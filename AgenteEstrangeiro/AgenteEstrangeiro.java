@@ -4,12 +4,15 @@ import Roteamento.Roteamento;
 import client.RMIClient;
 import server.RMIServer;
 import AgenteEstrangeiro.InterfaceAgenteEstrangeiro;
+import AgenteEstrangeiro.AgenteEstrangeiroConstant;
+import NoMovel.NoMovelInterface;
+import NoMovel.NoMovelConstant;
 
 public class AgenteEstrangeiro {
 
-	public RMIClient rmiClient = new RMIClient();
+	public RMIClient rmiClient = new RMIClient(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
 	public Roteamento roteamento = new Roteamento();
-	public RMIServer rmiServer = new RMIServer();
+	public RMIServer rmiServer = new RMIServer(AgenteEstrangeiroConstant.RMI_ID, AgenteEstrangeiroConstant.RMI_PORT);
 
 	public void main(String args[]) {
 		if (args[1] == "inicia") {
@@ -24,7 +27,7 @@ public class AgenteEstrangeiro {
 
 	// Encaminhar mensagem para o No Movel
 	public void encaminhaMensagem(String ip, String mensagem) {
-		mobileNode = rmiClient.conectar(ip);
+		NoMovelInterface mobileNode = rmiClient.conectar(ip, NoMovelInterface);
 		mobileNode.receberMensagem(mensagem);
 	}
 }

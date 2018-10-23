@@ -8,12 +8,15 @@ import java.rmi.registry.Registry;
 
 public class RMIClient {
 
-  public static String RMI_ID = "";
-  public static int RMI_PORT = 0;
+  public String RMI_ID = "";
+  public int RMI_PORT = 0;
 
-  public static void main(String rmi_id, int rmi_port) {
-    RMI_ID = rmi_id;
-    RMI_PORT = rmi_port;
+  public RMIClient(String rmi_id, int rmi_port) {
+    this.RMI_ID = rmi_id;
+    this.RMI_PORT = rmi_port;
+  }
+
+  public static void main() {
   }
 
   public conectar(String ip, Interface InterfaceClient) {

@@ -3,10 +3,10 @@ package AgenteEstrangeiro;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface InterfaceAgenteEstrangeiro extends Remote {
+public interface AgenteEstrangeiroInterface extends Remote {
 
-  String obtemCoA() throws RemoteException;
+  String obtemCoA(String ip) throws RemoteException;
 
-  void encaminhaMensagem() throws RemoteException;
+  void encaminhaMensagem(String ip, String mensagem) throws RemoteException;
 
 }

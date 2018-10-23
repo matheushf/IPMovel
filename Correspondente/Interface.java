@@ -5,5 +5,5 @@ import java.rmi.RemoteException;
 
 public interface CorrespondenteInterface extends Remote {
 
-  void transmitirMensagem();
+  void transmitirMensagem(String mensagem);
 }
