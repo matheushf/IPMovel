@@ -1,4 +1,4 @@
-Mensagem - correspondente - agente home -> (verificar tabela roteamento ) - agente movel - agente estrangeiro - no movel
+Mensagem - Correspondente - AgenteMovel - AgenteHome -> (verificar tabela roteamento ) - AgenteEstrangeiro - NoMovel
 
 1 - Quatro servers vão ficar ligados, 2 NoMovel, 1 Home Agent e 1 Foreign Agent
 
