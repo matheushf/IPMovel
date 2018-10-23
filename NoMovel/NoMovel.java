@@ -1,10 +1,5 @@
 package NoMovel;
 
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-
-import interf.Constant;
-import interf.HelloInterface;
 import server.RMIServer;
 
 public class NoMovel {
@@ -13,5 +8,9 @@ public class NoMovel {
 
 	public void main(String[] args) {
 		rmiServer.iniciarServer();
+	}
+
+	public void receberMensagem(String mensagem) {
+		System.out.println(mensagem);
 	}
 }

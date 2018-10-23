@@ -1,38 +1,15 @@
 package Correspondente;
 
-import interf.Constant;
-import interf.HelloInterface;
-import AgenteHome.AgenteHome;
-import cliente.RMIClient;
-import client.RMIClient;
-
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+import AgenteMovel.AgenteMovel;
 
 public class Correspondente {
 
-  public RMIClient rmiClient = new RMIClient();
+  AgenteMovel agenteMovel = new AgenteMovel();
 
-  private Correspondente() {
+  public void main(String args[]) {
   }
 
-  public void EnviaMensagem(String coa, String ip, String mensagem) {
-    homeAgent = rmiClient.conectar(coa);
-
-    Boolean existe = homeAgent.verifica(ip);
-
-    if (existe) {
-      homeAgent.encaminhaMensagem(ip, mensagem);
-    } else {
-      // Caso não exista no HA, obter o ip do FA e conectar novamente
-      String coaFA = homeAgent.obtemCoA(ip);
-
-      foreignAgent = rmiClient.conectar(coaFA);
-      foreignAgent.encaminhaMensagem(ip, mensagem);
-    }
-  }
-
-  public static void main(String args[]) {
-
+  public void transmitirMensagem(String coa, String ip, String mensagem) {
+    agenteMovel.enviaMensagem(coa, ip, mensagem);
   }
 }

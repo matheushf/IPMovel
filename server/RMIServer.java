@@ -51,7 +51,4 @@ public class RMIServer implements HelloInterface {
 		}
 	}
 
-	public void receberMensagem(String mensagem) {
-		System.out.println(mensagem);
-	}
 }

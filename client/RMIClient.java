@@ -8,14 +8,11 @@ import java.rmi.registry.Registry;
 
 public class RMIClient {
 
-	public RMIClient() {
-	}
+  public static void main(String[] args) {
 
-	public static void main(String[] args) {
+  }
 
-	}
-
-	public conectar(String ip) {
+  public conectar(String ip) {
     try {
       Registry registry = LocateRegistry.getRegistry(ip, Constant.RMI_PORT);
       final HelloInterface homeAgent = (HelloInterface) registry.lookup(Constant.RMI_ID);      
@@ -28,5 +25,4 @@ public class RMIClient {
     }
 
   }
-
 }

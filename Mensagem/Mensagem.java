@@ -1,17 +1,16 @@
 package client;
 
-import interf.Constant;
-import interf.HelloInterface;
-
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+import Correspondente.Correspondente;
 
 public class Mensagem {
 
-	private Mensagem() {
-	}
+	Correspondente correspondente = new Correspondente();
 
-	public static void main(String args[]) throws RemoteException {
+	public void main(String args[]) throws RemoteException {
+		String coa = "0.0.0.0";
+		String ip = "0.0.0.0";
+		String mensagem = "Alguma mensagem";
 
+		correspondente.transmitirMensagem(coa, ip, mensagem);
 	}
 }

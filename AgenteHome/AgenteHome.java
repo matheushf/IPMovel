@@ -1,11 +1,6 @@
 package AgenteHome;
 
-import interf.Constant;
-import interf.HelloInterface;
 import Roteamento.Roteamento;
-
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 public class AgenteHome {
 
@@ -22,10 +17,9 @@ public class AgenteHome {
 
 	// Obter CoA a partir do IP enviado
 	public String obtemCoA(String ip) {
-
 		return roteamento.getCoAIp(ip);
 	}
-
+	
 	// Encaminhar mensagem para o ForeignAgent
 	public void encaminhaMensagem(String ip, String mensagem) {
 		mobileNode = rmiClient.conectar(ip);

@@ -1,8 +1,8 @@
 Mensagem - correspondente - agente home -> (verificar tabela roteamento ) - agente movel - agente estrangeiro - no movel
 
-1 - Dois servers vão ficar ligados, Home Agent e Foreign Agent
+1 - Quatro servers vão ficar ligados, 2 NoMovel, 1 Home Agent e 1 Foreign Agent
 
-2 - Ao enviar uma mensagem, já está definido para qual ip ela será direcionada
+2 - Ao enviar uma mensagem, já está definido para qual IP e CoA (inicialmente HomeAgent) que ela será direcionada
 
 3 - Verificar na tabela de roteamento do Home Agent para ver a qual CoA o ip pertence
 
