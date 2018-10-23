@@ -3,7 +3,7 @@ package Roteamento;
 import java.util.ArrayList;
 import java.util.Arrays;;
 
-public class Roteamento implements HelloInterface {
+public class Roteamento {
 
   public static ArrayList<String> coa = new ArrayList<String>();
   public static ArrayList<String> ipsDestino = new ArrayList<String>();
@@ -17,8 +17,8 @@ public class Roteamento implements HelloInterface {
     coa.addAll(tempCoA);
   }
 
-  // Verificar se o ip enviado existe na mesma posiçaõ que o CoA, para validar se
-  // está na mesma rede
+  // Verificar se o ip enviado existe na mesma posicao que o CoA, para validar se
+  // esta na mesma rede
   public Boolean validaIp(String ip, String CoA) {
     Int indexIp = Arrays.asList(ipsDestino).indexOf(ip);
     Int indexCoA = Arrays.asList(coa).indexOf(CoA);

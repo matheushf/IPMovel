@@ -26,7 +26,7 @@ public class AgenteMovel {
     if (existe) {
       homeAgent.encaminhaMensagem(ip, mensagem);
     } else {
-      // Caso não exista no HA, obter o CoA do FA e conectar novamente
+      // Caso nao exista no HA, obter o CoA do FA e conectar novamente
       String coaFA = homeAgent.obtemCoA(ip);
 
       AgenteEstrangeiroInterface foreignAgent = clientEstrangeiro.conectar(coaFA);

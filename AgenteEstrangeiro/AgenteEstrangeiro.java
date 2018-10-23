@@ -3,7 +3,7 @@ package AgenteEstrangeiro;
 import Roteamento.Roteamento;
 import client.RMIClient;
 import server.RMIServer;
-import AgenteEstrangeiro.InterfaceAgenteEstrangeiro;
+import AgenteEstrangeiro.AgenteEstrangeiroInterface;
 import AgenteEstrangeiro.AgenteEstrangeiroConstant;
 import NoMovel.NoMovelInterface;
 import NoMovel.NoMovelConstant;
