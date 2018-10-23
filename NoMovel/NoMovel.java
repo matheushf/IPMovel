@@ -7,7 +7,9 @@ public class NoMovel {
 	public RMIServer rmiServer = new RMIServer();
 
 	public void main(String[] args) {
-		rmiServer.iniciarServer();
+		if (args[1] == "inicia") {
+			rmiServer.iniciarServer();
+		}
 	}
 
 	public void receberMensagem(String mensagem) {

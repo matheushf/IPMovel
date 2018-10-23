@@ -6,7 +6,6 @@ public class AgenteMovel {
 
   public RMIClient rmiClient = new RMIClient();
 
-
   public void main(String args[]) {
 
   }

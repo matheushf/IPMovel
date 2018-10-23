@@ -5,8 +5,8 @@ import java.util.Arrays;;
 
 public class Roteamento implements HelloInterface {
 
-  public static ArrayList<String> ipsDestino = new ArrayList<String>();
   public static ArrayList<String> coa = new ArrayList<String>();
+  public static ArrayList<String> ipsDestino = new ArrayList<String>();
 
   public static void main() {
 

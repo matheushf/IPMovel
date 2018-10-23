@@ -7,14 +7,16 @@ public class AgenteEstrangeiro {
 
 	public RMIClient rmiClient = new RMIClient();
 	public Roteamento roteamento = new Roteamento();
+	public RMIServer rmiServer = new RMIServer();
 
-	public static void main(String args[]) {
-
+	public void main(String args[]) {
+		if (args[1] == "inicia") {
+			rmiServer.iniciarServer();
+		}
 	}
 
 	// Obter CoA a partir do IP enviado
 	public String obtemCoA(String ip) {
-
 		return roteamento.getCoAIp(ip);
 	}
 
