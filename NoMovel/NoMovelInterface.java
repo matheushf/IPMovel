@@ -5,5 +5,5 @@ import java.rmi.RemoteException;
 
 public interface NoMovelInterface extends Remote {
 
-  void receberMensagem(String mensagem);
+  void receberMensagem(String mensagem) throws RemoteException;
 }

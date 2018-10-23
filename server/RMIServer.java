@@ -38,7 +38,7 @@ public class RMIServer implements HelloInterface {
 
 	}
 
-	public void iniciarServer(Interface InterfaceServer) {
+	/* public void iniciarServer() {
 		try {
 
 			RMIServer rmiServer = new RMIServer();
@@ -54,6 +54,6 @@ public class RMIServer implements HelloInterface {
 			System.err.println("Server exception: " + e.toString());
 			e.printStackTrace();
 		}
-	}
+	} */
 
 }

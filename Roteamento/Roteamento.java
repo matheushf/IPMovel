@@ -1,7 +1,8 @@
 package Roteamento;
 
 import java.util.ArrayList;
-import java.util.Arrays;;
+import java.util.Arrays;
+import java.util.List;
 
 public class Roteamento {
 
@@ -20,15 +21,15 @@ public class Roteamento {
   // Verificar se o ip enviado existe na mesma posicao que o CoA, para validar se
   // esta na mesma rede
   public Boolean validaIp(String ip, String CoA) {
-    Int indexIp = Arrays.asList(ipsDestino).indexOf(ip);
-    Int indexCoA = Arrays.asList(coa).indexOf(CoA);
+    int indexIp = Arrays.asList(ipsDestino).indexOf(ip);
+    int indexCoA = Arrays.asList(coa).indexOf(CoA);
 
     return indexIp == indexCoA;
   }
 
   // Enviar o CoA do ip recebido
   public String getCoAIp(String ip) {
-    Int indexIp = Arrays.asList(ipsDestino).indexOf(ip);
+    int indexIp = Arrays.asList(ipsDestino).indexOf(ip);
 
     return coa.get(indexIp);
   }

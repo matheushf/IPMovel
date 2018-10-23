@@ -8,7 +8,7 @@ public class Mensagem {
 
 	Correspondente correspondente = new Correspondente();
 
-	public void main(String args[]) throws RemoteException {
+	public void main(String args[]) {
 		correspondente.transmitirMensagem(mensagem);
 	}
 }
