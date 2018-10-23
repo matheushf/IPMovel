@@ -10,6 +10,9 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class RMIServer implements HelloInterface {
 
+	public static String RMI_ID = "";
+	public static int RMI_PORT = 0;
+
 	/**
 	 * Construtor
 	 */
@@ -29,19 +32,20 @@ public class RMIServer implements HelloInterface {
 	 * @param args
 	 * @throws RemoteException
 	 */
-	public static void main(String args[]) throws RemoteException {
-
+	public static void main(String rmi_id, int rmi_port) {
+		RMI_ID = rmi_id;
+		RMI_PORT = rmi_port;
 	}
 
-	public void iniciarServer() {
+	public void iniciarServer(Interface InterfaceServer) {
 		try {
 
 			RMIServer rmiServer = new RMIServer();
-			HelloInterface helloInterface = (HelloInterface) UnicastRemoteObject.exportObject(rmiServer, 0);
+			InterfaceServer server = (InterfaceServer) UnicastRemoteObject.exportObject(rmiServer, 0);
 
-			Registry registry = LocateRegistry.createRegistry(Constant.RMI_PORT);
+			Registry registry = LocateRegistry.createRegistry(RMI_PORT);
 
-			registry.bind(Constant.RMI_ID, helloInterface);
+			registry.bind(RMI_ID, server);
 
 			System.out.println("Server ready!");
 

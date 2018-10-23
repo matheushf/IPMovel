@@ -1,6 +1,7 @@
 package Correspondente;
 
 import AgenteMovel.AgenteMovel;
+import Correspondente.Constant;
 
 public class Correspondente {
 
@@ -9,7 +10,7 @@ public class Correspondente {
   public void main(String args[]) {
   }
 
-  public void transmitirMensagem(String coa, String ip, String mensagem) {
-    agenteMovel.enviaMensagem(coa, ip, mensagem);
+  public void transmitirMensagem(String mensagem) {
+    agenteMovel.enviaMensagem(Constant.coa, Constant.ipDestinatario, mensagem);
   }
 }

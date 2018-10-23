@@ -2,6 +2,8 @@ package AgenteEstrangeiro;
 
 import Roteamento.Roteamento;
 import client.RMIClient;
+import server.RMIServer;
+import AgenteEstrangeiro.InterfaceAgenteEstrangeiro;
 
 public class AgenteEstrangeiro {
 
@@ -11,7 +13,7 @@ public class AgenteEstrangeiro {
 
 	public void main(String args[]) {
 		if (args[1] == "inicia") {
-			rmiServer.iniciarServer();
+			rmiServer.iniciarServer(InterfaceAgenteEstrangeiro);
 		}
 	}
 

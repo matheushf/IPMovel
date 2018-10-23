@@ -1,10 +1,11 @@
 package AgenteMovel;
 
 import client.RMIClient;
+import AgenteMovel.Constant;
 
 public class AgenteMovel {
 
-  public RMIClient rmiClient = new RMIClient();
+  public RMIClient rmiClient = new RMIClient(Constant.RMI_ID, Constant.RMI_PORT);
 
   public void main(String args[]) {
 
