@@ -18,17 +18,15 @@ public class RMIClient {
   public static void main() {
   }
 
-  public InterfaceClient conectar(String ip, Interface InterfaceClient) {
+  /* public Remote conectar(String ip) {
     try {
       Registry registry = LocateRegistry.getRegistry(ip, RMI_PORT);
-      final InterfaceClient client = (InterfaceClient) registry.lookup(RMI_ID);      
-
-      return client;
+      // final InterfaceClient client = (InterfaceClient) registry.lookup(RMI_ID);      
+      return registry.lookup(RMI_ID);      
       
     } catch (Exception e) {
       System.err.println("Client exception: " + e.toString());
       e.printStackTrace();
     }
-
-  }
+  } */
 }
