@@ -15,7 +15,7 @@ public class AgenteEstrangeiro {
 	public RMIServer rmiServer = new RMIServer(AgenteEstrangeiroConstant.RMI_ID, AgenteEstrangeiroConstant.RMI_PORT);
 
 	public void main(String args[]) {
-		if (args[1] == "inicia") {
+		if (args[0] == "inicia") {
 			rmiServer.iniciarServer(InterfaceAgenteEstrangeiro);
 		}
 	}
