@@ -20,7 +20,7 @@ public class AgenteHome implements AgenteHomeInterface {
 	// public RMIServer rmiServer = new RMIServer(AgenteHomeConstant.RMI_ID, AgenteHomeConstant.RMI_PORT);
 
 	public static void main(String args[]) {
-		if (args[1] == "inicia") {
+		if (args[0] == "inicia") {
 			// rmiServer.iniciarServer(AgenteHomeInterface);
 
 			try {

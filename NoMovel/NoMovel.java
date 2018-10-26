@@ -14,7 +14,7 @@ public class NoMovel implements NoMovelInterface {
 	// public RMIServer rmiServer = new RMIServer(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
 
 	public void main(String[] args) {
-		if (args[1] == "inicia") {
+		if (args[0] == "inicia") {
 			// rmiServer.iniciarServer(NoMovelInterface);
 
 			try {
