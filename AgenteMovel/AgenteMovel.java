@@ -3,10 +3,7 @@ package AgenteMovel;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-<<<<<<< HEAD
-=======
 import client.Mensagem;
->>>>>>> 456ca3f094e5bce846ca0b39268d63750ce2d6e7
 import client.RMIClient;
 import AgenteMovel.*;
 import AgenteHome.*;
@@ -24,11 +21,7 @@ public class AgenteMovel implements AgenteMovelInterface {
 
   }
 
-<<<<<<< HEAD
-  public void enviaMensagem(String coa, String ip, String mensagem) {
-=======
   public void enviaMensagem(String coa, String ip, Mensagem mensagem) {
->>>>>>> 456ca3f094e5bce846ca0b39268d63750ce2d6e7
     // AgenteHomeInterface homeAgent = clientHome.conectar(coa);
     AgenteHomeInterface homeAgent = conectaHomeAgent(coa);
 
