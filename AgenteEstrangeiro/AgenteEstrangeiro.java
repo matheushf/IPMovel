@@ -17,16 +17,35 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 
 	public RMIClient rmiClient = new RMIClient(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
 	public Roteamento roteamento = new Roteamento();
+<<<<<<< HEAD
 	// public RMIServer rmiServer = new RMIServer(AgenteEstrangeiroConstant.RMI_ID, AgenteEstrangeiroConstant.RMI_PORT);
 
 	public void main(String args[]) {
 		if (args[0] == "inicia") {
+=======
+	public static Boolean server = true;
+	// public RMIServer rmiServer = new RMIServer(AgenteEstrangeiroConstant.RMI_ID,
+	// AgenteEstrangeiroConstant.RMI_PORT);
+
+	public AgenteEstrangeiro(Boolean server) {
+		this.server = server ? server : false;
+	}
+
+	public void main(String args[]) {
+		if (server == true) {
+>>>>>>> 456ca3f094e5bce846ca0b39268d63750ce2d6e7
 			// rmiServer.iniciarServer(InterfaceAgenteEstrangeiro);
 
 			try {
 
+<<<<<<< HEAD
 				AgenteEstrangeiro agenteEstrangeiro = new AgenteEstrangeiro();
 				AgenteEstrangeiroInterface server = (AgenteEstrangeiroInterface) UnicastRemoteObject.exportObject(agenteEstrangeiro, 0);
+=======
+				AgenteEstrangeiro agenteEstrangeiro = new AgenteEstrangeiro(false);
+				AgenteEstrangeiroInterface server = (AgenteEstrangeiroInterface) UnicastRemoteObject
+						.exportObject(agenteEstrangeiro, 0);
+>>>>>>> 456ca3f094e5bce846ca0b39268d63750ce2d6e7
 
 				Registry registry = LocateRegistry.createRegistry(AgenteEstrangeiroConstant.RMI_PORT);
 
@@ -53,13 +72,21 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 
 		try {
 			Registry registry = LocateRegistry.getRegistry(ip, NoMovelConstant.RMI_PORT);
+<<<<<<< HEAD
 			final NoMovelInterface noMovel = (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);          	  		
+=======
+			final NoMovelInterface noMovel = (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);
+>>>>>>> 456ca3f094e5bce846ca0b39268d63750ce2d6e7
 
 			noMovel.receberMensagem(mensagem);
 
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());
 			e.printStackTrace();
+<<<<<<< HEAD
 		}		
+=======
+		}
+>>>>>>> 456ca3f094e5bce846ca0b39268d63750ce2d6e7
 	}
 }

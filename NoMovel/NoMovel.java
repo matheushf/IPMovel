@@ -12,9 +12,14 @@ import NoMovel.NoMovelInterface;
 public class NoMovel implements NoMovelInterface {
 
 	// public RMIServer rmiServer = new RMIServer(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
+	public static Boolean server = true;
+
+	public NoMovel(Boolean server) {
+		this.server = server ? server : false;
+	}
 
 	public void main(String[] args) {
-		if (args[0] == "inicia") {
+		if (server == true) {
 			// rmiServer.iniciarServer(NoMovelInterface);
 
 			try {
