@@ -16,16 +16,21 @@ import NoMovel.NoMovelConstant;
 public class AgenteHome implements AgenteHomeInterface {
 
 	public Roteamento roteamento = new Roteamento();
+	public static Boolean server = true;
 	// public RMIClient rmiClient = new RMIClient(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
 	// public RMIServer rmiServer = new RMIServer(AgenteHomeConstant.RMI_ID, AgenteHomeConstant.RMI_PORT);
 
+	public AgenteHome(Boolean server) {
+		this.server = server ? server : false;
+	}
+
 	public static void main(String args[]) {
-		if (args[0] == "inicia") {
+		if (server == true) {
 			// rmiServer.iniciarServer(AgenteHomeInterface);
 
 			try {
 
-				AgenteHome agenteHome = new AgenteHome();
+				AgenteHome agenteHome = new AgenteHome(false);
 				AgenteHomeInterface server = (AgenteHomeInterface) UnicastRemoteObject.exportObject(agenteHome, 0);
 
 				Registry registry = LocateRegistry.createRegistry(AgenteHomeConstant.RMI_PORT);

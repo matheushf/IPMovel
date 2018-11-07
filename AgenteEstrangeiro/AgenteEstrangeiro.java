@@ -17,16 +17,23 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 
 	public RMIClient rmiClient = new RMIClient(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
 	public Roteamento roteamento = new Roteamento();
-	// public RMIServer rmiServer = new RMIServer(AgenteEstrangeiroConstant.RMI_ID, AgenteEstrangeiroConstant.RMI_PORT);
+	public static Boolean server = true;
+	// public RMIServer rmiServer = new RMIServer(AgenteEstrangeiroConstant.RMI_ID,
+	// AgenteEstrangeiroConstant.RMI_PORT);
+
+	public AgenteEstrangeiro(Boolean server) {
+		this.server = server ? server : false;
+	}
 
 	public void main(String args[]) {
-		if (args[0] == "inicia") {
+		if (server == true) {
 			// rmiServer.iniciarServer(InterfaceAgenteEstrangeiro);
 
 			try {
 
-				AgenteEstrangeiro agenteEstrangeiro = new AgenteEstrangeiro();
-				AgenteEstrangeiroInterface server = (AgenteEstrangeiroInterface) UnicastRemoteObject.exportObject(agenteEstrangeiro, 0);
+				AgenteEstrangeiro agenteEstrangeiro = new AgenteEstrangeiro(false);
+				AgenteEstrangeiroInterface server = (AgenteEstrangeiroInterface) UnicastRemoteObject
+						.exportObject(agenteEstrangeiro, 0);
 
 				Registry registry = LocateRegistry.createRegistry(AgenteEstrangeiroConstant.RMI_PORT);
 
@@ -53,13 +60,13 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 
 		try {
 			Registry registry = LocateRegistry.getRegistry(ip, NoMovelConstant.RMI_PORT);
-			final NoMovelInterface noMovel = (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);          	  		
+			final NoMovelInterface noMovel = (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);
 
 			noMovel.receberMensagem(mensagem);
 
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());
 			e.printStackTrace();
-		}		
+		}
 	}
 }
