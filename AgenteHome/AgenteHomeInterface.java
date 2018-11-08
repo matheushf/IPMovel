@@ -7,10 +7,10 @@ import client.Mensagem;
 
 public interface AgenteHomeInterface extends Remote {
 
-  Boolean verifica(String ip, String coa) throws RemoteException;
+  Boolean verifica(String ip, String coa);
 
-  String obtemCoA(String ip) throws RemoteException;
+  String obtemCoA(String ip);
 
-  void encaminhaMensagem(String ip, Mensagem mensagem) throws RemoteException;
+  void encaminhaMensagem(Mensagem mensagem);
 
 }

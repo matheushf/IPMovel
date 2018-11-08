@@ -24,19 +24,20 @@ public class AgenteMovel implements AgenteMovelInterface {
   public void enviaMensagem(Mensagem mensagem) {
     String coa = mensagem.coa;
     String ipDestinatario = mensagem.ipDestinatario;
+
     AgenteHomeInterface homeAgent = conectaHomeAgent(coa);
 
     // Verificar se o ip existe no HA
     Boolean existe = homeAgent.verifica(ipDestinatario, coa);
 
     if (existe) {
-      homeAgent.encaminhaMensagem(ipDestinatario, mensagem);
+      homeAgent.encaminhaMensagem(mensagem);
     } else {
       // Caso nao exista no HA, obter o CoA do FA e conectar novamente
       String coaFA = homeAgent.obtemCoA(ipDestinatario);
 
       // AgenteEstrangeiroInterface foreignAgent = clientEstrangeiro.conectar(coaFA);
-      AgenteEstrangeiroInterface foreignAgent = conectaForeignAgent(coa);
+      AgenteEstrangeiroInterface foreignAgent = conectaForeignAgent(coaFA);
       foreignAgent.encaminhaMensagem(mensagem);
     }
   }

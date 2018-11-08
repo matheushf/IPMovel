@@ -30,7 +30,6 @@ public class AgenteHome implements AgenteHomeInterface {
 			// rmiServer.iniciarServer(AgenteHomeInterface);
 
 			try {
-
 				AgenteHome agenteHome = new AgenteHome(false);
 				AgenteHomeInterface server = (AgenteHomeInterface) UnicastRemoteObject.exportObject(agenteHome, 0);
 
@@ -58,7 +57,7 @@ public class AgenteHome implements AgenteHomeInterface {
 	}
 
 	// Encaminhar mensagem para o ForeignAgent
-	public void encaminhaMensagem(String ip, Mensagem mensagem) {
+	public void encaminhaMensagem(Mensagem mensagem) {
 		// mobileNode = rmiClient.conectar(ip);
 		// mobileNode.receberMensagem(mensagem);
 

@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 // import server.RMIServer;
 import NoMovel.NoMovelConstant;
 import NoMovel.NoMovelInterface;
+import client.Mensagem;
 
 public class NoMovel implements NoMovelInterface {
 
@@ -24,14 +25,14 @@ public class NoMovel implements NoMovelInterface {
 
 			try {
 
-				NoMovel noMovel = new NoMovel();
+				NoMovel noMovel = new NoMovel(false);
 				NoMovelInterface server = (NoMovelInterface) UnicastRemoteObject.exportObject(noMovel, 0);
 
 				Registry registry = LocateRegistry.createRegistry(NoMovelConstant.RMI_PORT);
 
 				registry.bind(NoMovelConstant.RMI_ID, server);
 
-				System.out.println("AgenteEstrangeiro ready!");
+				System.out.println("No Movel ready!");
 
 			} catch (Exception e) {
 				System.err.println("Server exception: " + e.toString());
@@ -40,7 +41,7 @@ public class NoMovel implements NoMovelInterface {
 		}
 	}
 
-	public void receberMensagem(String mensagem) {
-		System.out.println(mensagem);
+	public void receberMensagem(Mensagem mensagem) throws RemoteException {
+		System.out.println("No movel recebe msg: " + mensagem);
 	}
 }
