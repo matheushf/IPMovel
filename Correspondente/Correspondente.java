@@ -14,6 +14,6 @@ public class Correspondente {
   }
 
   public void transmitirMensagem(Mensagem mensagem) {
-    agenteMovel.enviaMensagem(CorrespondenteConstant.coa, CorrespondenteConstant.ipDestinatario, mensagem);
+    agenteMovel.enviaMensagem(mensagem);
   }
 }

@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import Roteamento.Roteamento;
+import client.Mensagem;
 // import server.RMIServer;
 // import client.RMIClient;
 import AgenteHome.AgenteHomeInterface;
@@ -57,12 +58,12 @@ public class AgenteHome implements AgenteHomeInterface {
 	}
 
 	// Encaminhar mensagem para o ForeignAgent
-	public void encaminhaMensagem(String ip, String mensagem) {
+	public void encaminhaMensagem(String ip, Mensagem mensagem) {
 		// mobileNode = rmiClient.conectar(ip);
 		// mobileNode.receberMensagem(mensagem);
 
 		try {
-			Registry registry = LocateRegistry.getRegistry(ip, NoMovelConstant.RMI_PORT);
+			Registry registry = LocateRegistry.getRegistry(mensagem.ipDestinatario, NoMovelConstant.RMI_PORT);
 			final NoMovelInterface noMovel = (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);          	  		
 
 			noMovel.receberMensagem(mensagem);
