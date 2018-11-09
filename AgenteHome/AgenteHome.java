@@ -18,8 +18,6 @@ public class AgenteHome implements AgenteHomeInterface {
 
 	public Roteamento roteamento = new Roteamento();
 	public static Boolean server = true;
-	// public RMIClient rmiClient = new RMIClient(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
-	// public RMIServer rmiServer = new RMIServer(AgenteHomeConstant.RMI_ID, AgenteHomeConstant.RMI_PORT);
 
 	public AgenteHome(Boolean server) {
 		this.server = server ? server : false;
@@ -64,6 +62,8 @@ public class AgenteHome implements AgenteHomeInterface {
 		try {
 			Registry registry = LocateRegistry.getRegistry(mensagem.ipDestinatario, NoMovelConstant.RMI_PORT);
 			final NoMovelInterface noMovel = (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);          	  		
+
+			System.out.println("NoMovel conectado no HA ");
 
 			noMovel.receberMensagem(mensagem);
 

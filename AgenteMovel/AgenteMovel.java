@@ -11,12 +11,6 @@ import AgenteEstrangeiro.*;
 
 public class AgenteMovel implements AgenteMovelInterface {
 
-  // public RMIClient rmiClient = new RMIClient(AgenteMovelConstant.RMI_ID,
-  // AgenteMovelConstant.RMI_PORT);
-  // public RMIClient clientHome = new RMIClient(AgenteHomeConstant.RMI_ID, AgenteHomeConstant.RMI_PORT);
-  /* public RMIClient clientEstrangeiro = new RMIClient(AgenteEstrangeiroConstant.RMI_ID,
-      AgenteEstrangeiroConstant.RMI_PORT); */
-
   public void main(String args[]) {
 
   }
@@ -28,13 +22,16 @@ public class AgenteMovel implements AgenteMovelInterface {
     AgenteHomeInterface homeAgent = conectaHomeAgent(coa);
 
     // Verificar se o ip existe no HA
-    Boolean existe = homeAgent.verifica(ipDestinatario, coa);
+    Boolean existe = homeAgent.verifica(ipDestinatario, coa);    
 
     if (existe) {
+      System.out.println("AgenteMovel, nó existe no HA, encaminhando mensagem ");
       homeAgent.encaminhaMensagem(mensagem);
     } else {
       // Caso nao exista no HA, obter o CoA do FA e conectar novamente
       String coaFA = homeAgent.obtemCoA(ipDestinatario);
+
+      System.out.println("AgenteMovel, nó não existe no HA, ip do FA: " + coaFA);
 
       // AgenteEstrangeiroInterface foreignAgent = clientEstrangeiro.conectar(coaFA);
       AgenteEstrangeiroInterface foreignAgent = conectaForeignAgent(coaFA);
@@ -48,6 +45,8 @@ public class AgenteMovel implements AgenteMovelInterface {
     try {
 			Registry registry = LocateRegistry.getRegistry(coa, AgenteHomeConstant.RMI_PORT);
 			homeAgent = (AgenteHomeInterface) registry.lookup(AgenteHomeConstant.RMI_ID);
+
+      System.out.println("AgenteHome conectado ");
 
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());
@@ -63,7 +62,9 @@ public class AgenteMovel implements AgenteMovelInterface {
 
     try {
 			Registry registry = LocateRegistry.getRegistry(coa, AgenteEstrangeiroConstant.RMI_PORT);
-			foreignAgent = (AgenteEstrangeiroInterface) registry.lookup(AgenteEstrangeiroConstant.RMI_ID);
+      foreignAgent = (AgenteEstrangeiroInterface) registry.lookup(AgenteEstrangeiroConstant.RMI_ID);
+
+      System.out.println("AgenteEstrangeiro conectado ");
 
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());

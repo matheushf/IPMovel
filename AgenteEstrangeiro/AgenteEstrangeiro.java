@@ -49,11 +49,6 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 		}
 	}
 
-	// Obter CoA a partir do IP enviado
-	public String obtemCoA(String ip) {
-		return roteamento.getCoAIp(ip);
-	}
-
 	// Encaminhar mensagem para o No Movel
 	public void encaminhaMensagem(Mensagem mensagem) {
 		// noMovel = rmiClient.conectar(ip);
@@ -64,6 +59,8 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 			final NoMovelInterface noMovel = (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);
 
 			noMovel.receberMensagem(mensagem);
+
+			System.out.println("NoMovel conectado no FA ");
 
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());

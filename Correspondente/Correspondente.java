@@ -14,6 +14,7 @@ public class Correspondente {
   }
 
   public void transmitirMensagem(Mensagem mensagem) {
+    System.out.println("Correspondente transmitirMensagem");
     agenteMovel.enviaMensagem(mensagem);
   }
 }
