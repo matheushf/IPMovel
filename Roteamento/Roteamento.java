@@ -11,10 +11,10 @@ public class Roteamento {
 
   public static void main() {
 
-    List<String> tempIps = Arrays.asList("0.0.0.0", "0.0.0.0");
+    List<String> tempIps = Arrays.asList("172.16.0.82", "0.0.0.0");
     ipsDestino.addAll(tempIps);
 
-    List<String> tempCoA = Arrays.asList("0.0.0.0", "0.0.0.0");
+    List<String> tempCoA = Arrays.asList("182.16.0.81", "0.0.0.0");
     coa.addAll(tempCoA);
   }
 
