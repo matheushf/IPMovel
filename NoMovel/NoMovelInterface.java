@@ -3,7 +3,7 @@ package NoMovel;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import client.Mensagem;
+import Mensagem.Mensagem;
 
 public interface NoMovelInterface extends Remote {
 

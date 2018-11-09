@@ -3,7 +3,7 @@ package Correspondente;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import client.Mensagem;
+import Mensagem.Mensagem;
 
 public interface CorrespondenteInterface extends Remote {
 

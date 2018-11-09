@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import Roteamento.Roteamento;
-import client.Mensagem;
+import Mensagem.Mensagem;
 // import server.RMIServer;
 // import client.RMIClient;
 import AgenteHome.AgenteHomeInterface;

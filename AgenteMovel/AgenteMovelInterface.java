@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import AgenteHome.*;
-import client.Mensagem;
+import Mensagem.Mensagem;
 import AgenteEstrangeiro.*;
 
 public interface AgenteMovelInterface extends Remote {

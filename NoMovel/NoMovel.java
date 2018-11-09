@@ -8,7 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 // import server.RMIServer;
 import NoMovel.NoMovelConstant;
 import NoMovel.NoMovelInterface;
-import client.Mensagem;
+import Mensagem.Mensagem;
 
 public class NoMovel implements NoMovelInterface {
 

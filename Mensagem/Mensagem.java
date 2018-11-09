@@ -1,4 +1,4 @@
-package client;
+package Mensagem;
 
 import Correspondente.Correspondente;
 import java.io.Serializable;
@@ -19,6 +19,8 @@ public class Mensagem implements Serializable {
 		this.ipDestinatario = ipDestinatario;
 		this.coa = coa;
 	}
+        
+        private static final long serialVersionUID = 90L;
 
 	public void main(String args[]) {
 	}	

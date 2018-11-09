@@ -1,7 +1,7 @@
 package Correspondente;
 
 import AgenteMovel.AgenteMovel;
-import client.Mensagem;
+import Mensagem.Mensagem;
 import Correspondente.CorrespondenteConstant;
 
 public class Correspondente {

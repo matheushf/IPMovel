@@ -3,7 +3,7 @@ package AgenteMovel;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import client.Mensagem;
+import Mensagem.Mensagem;
 import client.RMIClient;
 import AgenteMovel.*;
 import AgenteHome.*;

@@ -3,7 +3,7 @@ package AgenteEstrangeiro;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import client.Mensagem;
+import Mensagem.Mensagem;
 
 public interface AgenteEstrangeiroInterface extends Remote {
 
