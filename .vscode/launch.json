@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Correspondente",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "Correspondente.Correspondente",
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - Correspondente",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopOnEntry": false,
+      "mainClass": "AgentHome.Correspondente",
+      "args": ""
+    }
+  ]
+}
