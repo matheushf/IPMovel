@@ -16,14 +16,16 @@ import NoMovel.NoMovelConstant;
 
 public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 
-	public RMIClient rmiClient = new RMIClient(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
 	public Roteamento roteamento = new Roteamento();
 	public static Boolean server = true;
-	// public RMIServer rmiServer = new RMIServer(AgenteEstrangeiroConstant.RMI_ID,
-	// AgenteEstrangeiroConstant.RMI_PORT);
+	// public String coaEstrangeiro = "0.0.0.0";
 
 	public AgenteEstrangeiro(Boolean server) {
 		this.server = server ? server : false;
+	}
+
+	public void reconhecimento(String coa, String ip) {
+		roteamento.mapearNoMovel(coa, ip);
 	}
 
 	public void main(String args[]) {
@@ -51,8 +53,6 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 
 	// Encaminhar mensagem para o No Movel
 	public void encaminhaMensagem(Mensagem mensagem) {
-		// noMovel = rmiClient.conectar(ip);
-		// noMovel.receberMensagem(mensagem);
 
 		try {
 			Registry registry = LocateRegistry.getRegistry(mensagem.ipDestinatario, NoMovelConstant.RMI_PORT);

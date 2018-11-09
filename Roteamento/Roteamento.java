@@ -18,6 +18,11 @@ public class Roteamento {
     coa.addAll(tempCoA);
   }
 
+  public void mapearNoMovel(String novoCoa, String novoIpDestino) {
+    ipsDestino.add(novoIpDestino);
+    coa.add(novoCoa);
+  }
+
   // Verificar se o ip enviado existe na mesma posicao que o CoA, para validar se
   // esta na mesma rede
   public Boolean validaIp(String ip, String CoA) {

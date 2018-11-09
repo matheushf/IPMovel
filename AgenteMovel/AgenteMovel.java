@@ -78,17 +78,17 @@ public class AgenteMovel implements AgenteMovelInterface {
     AgenteEstrangeiroInterface foreignAgent = null;
 
     try {
-			Registry registry = LocateRegistry.getRegistry(coa, AgenteEstrangeiroConstant.RMI_PORT);
+      Registry registry = LocateRegistry.getRegistry(coa, AgenteEstrangeiroConstant.RMI_PORT);
       foreignAgent = (AgenteEstrangeiroInterface) registry.lookup(AgenteEstrangeiroConstant.RMI_ID);
 
       System.out.println("AgenteEstrangeiro conectado ");
 
-		} catch (Exception e) {
-			System.err.println("Client exception: " + e.toString());
-			e.printStackTrace();
+    } catch (Exception e) {
+      System.err.println("Client exception: " + e.toString());
+      e.printStackTrace();
 
-		} finally {
+    } finally {
       return foreignAgent;
-    }        
+    }
   }
 }

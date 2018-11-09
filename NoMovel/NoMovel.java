@@ -5,6 +5,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import AgenteEstrangeiro.AgenteEstrangeiroInterface;
 // import server.RMIServer;
 import NoMovel.NoMovelConstant;
 import NoMovel.NoMovelInterface;
@@ -12,8 +13,10 @@ import Mensagem.Mensagem;
 
 public class NoMovel implements NoMovelInterface {
 
-	// public RMIServer rmiServer = new RMIServer(NoMovelConstant.RMI_ID, NoMovelConstant.RMI_PORT);
+	// public RMIServer rmiServer = new RMIServer(NoMovelConstant.RMI_ID,
+	// NoMovelConstant.RMI_PORT);
 	public static Boolean server = true;
+	public static String coaEstrangeiro = "0.0.0.0";
 
 	public NoMovel(Boolean server) {
 		this.server = server ? server : false;
@@ -21,23 +24,43 @@ public class NoMovel implements NoMovelInterface {
 
 	public static void main(String[] args) {
 		if (server == true) {
-			// rmiServer.iniciarServer(NoMovelInterface);
+			NoMovel noMovel = new NoMovel(false);
+			noMovel.iniciarServer(noMovel);
+			noMovel.avisarNoDisponivel(coaEstrangeiro);
+		}
+	}
 
-			try {
+	public void iniciaServer(NoMovel noMovel) {
+		try {
 
-				NoMovel noMovel = new NoMovel(false);
-				NoMovelInterface server = (NoMovelInterface) UnicastRemoteObject.exportObject(noMovel, 0);
+			NoMovelInterface server = (NoMovelInterface) UnicastRemoteObject.exportObject(noMovel, 0);
 
-				Registry registry = LocateRegistry.createRegistry(NoMovelConstant.RMI_PORT);
+			Registry registry = LocateRegistry.createRegistry(NoMovelConstant.RMI_PORT);
 
-				registry.bind(NoMovelConstant.RMI_ID, server);
+			registry.bind(NoMovelConstant.RMI_ID, server);
 
-				System.out.println("No Movel ready!");
+			System.out.println("No Movel ready!");
 
-			} catch (Exception e) {
-				System.err.println("Server exception: " + e.toString());
-				e.printStackTrace();
-			}
+		} catch (Exception e) {
+			System.err.println("Server exception: " + e.toString());
+			e.printStackTrace();
+		}
+	}
+
+	public void avisarNoDisponivel(String coa) {
+		AgenteEstrangeiroInterface foreignAgent = null;
+
+		try {
+			Registry registry = LocateRegistry.getRegistry(coa, AgenteEstrangeiroConstant.RMI_PORT);
+			foreignAgent = (AgenteEstrangeiroInterface) registry.lookup(AgenteEstrangeiroConstant.RMI_ID);
+
+			System.out.println("AgenteEstrangeiro conectado, avisar que esta disponivel ");
+			foreignAgent.reconhecimento(coa, ip);
+
+		} catch (Exception e) {
+			System.err.println("Client exception: " + e.toString());
+			e.printStackTrace();
+
 		}
 	}
 
