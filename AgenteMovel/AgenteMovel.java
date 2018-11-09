@@ -8,6 +8,9 @@ import client.RMIClient;
 import AgenteMovel.*;
 import AgenteHome.*;
 import AgenteEstrangeiro.*;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AgenteMovel implements AgenteMovelInterface {
 
@@ -22,14 +25,28 @@ public class AgenteMovel implements AgenteMovelInterface {
     AgenteHomeInterface homeAgent = conectaHomeAgent(coa);
 
     // Verificar se o ip existe no HA
-    Boolean existe = homeAgent.verifica(ipDestinatario, coa);    
+    Boolean existe = null;    
+      try {
+          existe = homeAgent.verifica(ipDestinatario, coa);
+      } catch (RemoteException ex) {
+          Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
+      }
 
     if (existe) {
       System.out.println("AgenteMovel, nó existe no HA, encaminhando mensagem ");
-      homeAgent.encaminhaMensagem(mensagem);
+        try {
+            homeAgent.encaminhaMensagem(mensagem);
+        } catch (RemoteException ex) {
+            Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } else {
       // Caso nao exista no HA, obter o CoA do FA e conectar novamente
-      String coaFA = homeAgent.obtemCoA(ipDestinatario);
+      String coaFA = null;
+        try {
+            coaFA = homeAgent.obtemCoA(ipDestinatario);
+        } catch (RemoteException ex) {
+            Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
       System.out.println("AgenteMovel, nó não existe no HA, ip do FA: " + coaFA);
 

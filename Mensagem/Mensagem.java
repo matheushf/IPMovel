@@ -1,8 +1,9 @@
 package client;
 
 import Correspondente.Correspondente;
+import java.io.Serializable;
 
-public class Mensagem {
+public class Mensagem implements Serializable {
 	
 	public String mensagem = "Alguma mensagem";
 	// Meu ip
