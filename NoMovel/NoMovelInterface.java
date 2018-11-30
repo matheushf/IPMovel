@@ -7,7 +7,7 @@ import Mensagem.Mensagem;
 
 public interface NoMovelInterface extends Remote {
 
-  void avisarNoDisponivel(String coa, String ip);
+  void avisarNoDisponivel(String coa, String ip) throws RemoteException;
   
   void receberMensagem(Mensagem mensagem) throws RemoteException;
 }
