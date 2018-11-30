@@ -11,6 +11,7 @@ import AgenteEstrangeiro.AgenteEstrangeiroInterface;
 import NoMovel.NoMovelConstant;
 import NoMovel.NoMovelInterface;
 import Mensagem.Mensagem;
+import Mensagem.MensagemControle;
 
 public class NoMovel implements NoMovelInterface {
 
@@ -27,8 +28,9 @@ public class NoMovel implements NoMovelInterface {
 	public static void main(String[] args) {
 		if (server == true) {
 			NoMovel noMovel = new NoMovel(false);
+			MensagemControle mensagem = new MensagemControle(coaEstrangeiro, ipNoMovel);
 			noMovel.iniciaServer(noMovel);
-			noMovel.avisarNoDisponivel(coaEstrangeiro, ipNoMovel);
+			noMovel.avisarNoDisponivel(mensagem);
 		}
 	}
 
@@ -49,15 +51,15 @@ public class NoMovel implements NoMovelInterface {
 		}
 	}
 
-	public void avisarNoDisponivel(String coa, String ip) {
+	public void avisarNoDisponivel(MensagemControle mensagem) {
 		AgenteEstrangeiroInterface foreignAgent = null;
 
 		try {
-			Registry registry = LocateRegistry.getRegistry(coa, AgenteEstrangeiroConstant.RMI_PORT);
+			Registry registry = LocateRegistry.getRegistry(mensagem.coa, AgenteEstrangeiroConstant.RMI_PORT);
 			foreignAgent = (AgenteEstrangeiroInterface) registry.lookup(AgenteEstrangeiroConstant.RMI_ID);
 
 			System.out.println("AgenteEstrangeiro conectado, avisar que esta disponivel ");
-			foreignAgent.reconhecimento(coa, ip);
+			foreignAgent.reconhecimento(mensagem);
 
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());

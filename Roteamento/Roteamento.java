@@ -11,7 +11,7 @@ public class Roteamento {
 
   public static void main() {
 
-    List<String> tempIps = Arrays.asList("172.16.0.81");
+    List<String> tempIps = Arrays.asList("");
     ipsDestino.addAll(tempIps);
 
     List<String> tempCoA = Arrays.asList("172.16.0.82");

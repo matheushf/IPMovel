@@ -5,8 +5,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import AgenteEstrangeiro.AgenteEstrangeiroConstant;
+import AgenteEstrangeiro.AgenteEstrangeiroInterface;
 import Roteamento.Roteamento;
 import Mensagem.Mensagem;
+import Mensagem.MensagemControle;
 // import server.RMIServer;
 // import client.RMIClient;
 import AgenteHome.AgenteHomeInterface;
@@ -54,22 +57,54 @@ public class AgenteHome implements AgenteHomeInterface {
 		return roteamento.getCoAIp(ip);
 	}
 
-	// Encaminhar mensagem para o ForeignAgent
-	public void encaminhaMensagem(Mensagem mensagem) {
-		// mobileNode = rmiClient.conectar(ip);
-		// mobileNode.receberMensagem(mensagem);
+	public AgenteEstrangeiroInterface conectaForeignAgent(String coa) {
+		AgenteEstrangeiroInterface foreignAgent = null;
 
 		try {
-			Registry registry = LocateRegistry.getRegistry(mensagem.ipDestinatario, NoMovelConstant.RMI_PORT);
-			final NoMovelInterface noMovel = (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);          	  		
+			Registry registry = LocateRegistry.getRegistry(coa, AgenteEstrangeiroConstant.RMI_PORT);
+			foreignAgent = (AgenteEstrangeiroInterface) registry.lookup(AgenteEstrangeiroConstant.RMI_ID);
 
-			System.out.println("NoMovel conectado no HA ");
-
-			noMovel.receberMensagem(mensagem);
+			System.out.println("AgenteEstrangeiro conectado ");
 
 		} catch (Exception e) {
 			System.err.println("Client exception: " + e.toString());
 			e.printStackTrace();
+
+		} finally {
+			return foreignAgent;
+		}
+	}
+
+	// Encaminhar mensagem para o ForeignAgent
+	public void encaminhaMensagem(Mensagem mensagem) {
+		AgenteHome agenteHome = new AgenteHome(false);
+
+		// Obter qual agente estrangeiro o no esta
+		String coaFA = this.obtemCoA(mensagem.ipDestinatario);
+
+		AgenteEstrangeiroInterface foreignAgent = agenteHome.conectaForeignAgent(coaFA);
+		try {
+			foreignAgent.encaminhaMensagem(mensagem);
+		} catch (Exception e) {
+			System.err.println("Server exception: " + e.toString());
+			e.printStackTrace();
 		}		
 	}
+
+	public void receberAgenteEstrangeiro(MensagemControle mensagem) {
+
+	}
+
+	/*
+	 * try { Registry registry = LocateRegistry.getRegistry(ipDestinatario,
+	 * NoMovelConstant.RMI_PORT); final NoMovelInterface noMovel =
+	 * (NoMovelInterface) registry.lookup(NoMovelConstant.RMI_ID);
+	 * 
+	 * System.out.println("NoMovel conectado no HA ");
+	 * 
+	 * noMovel.receberMensagem(mensagem);
+	 * 
+	 * } catch (Exception e) { System.err.println("Client exception: " +
+	 * e.toString()); e.printStackTrace(); }
+	 */
 }
