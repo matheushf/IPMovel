@@ -13,3 +13,6 @@ Mensagem - Correspondente - AgenteMovel - AgenteHome -> (verificar tabela roteam
 5 - Conectar ao Foreign Agent com seu CoA
 
 6 - Entregar a mensagem para o IP dentro do Foreign Agent
+
+
+Ip movel, computacao obliqua, tecnologia de radio
