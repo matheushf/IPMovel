@@ -5,6 +5,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import AgenteEstrangeiro.AgenteEstrangeiroConstant;
 import AgenteEstrangeiro.AgenteEstrangeiroInterface;
 // import server.RMIServer;
 import NoMovel.NoMovelConstant;
@@ -16,7 +17,8 @@ public class NoMovel implements NoMovelInterface {
 	// public RMIServer rmiServer = new RMIServer(NoMovelConstant.RMI_ID,
 	// NoMovelConstant.RMI_PORT);
 	public static Boolean server = true;
-	public static String coaEstrangeiro = "0.0.0.0";
+	public static String coaEstrangeiro = "0.0.0.0";	
+	public static String ipNoMovel = "0.0.0.0";	
 
 	public NoMovel(Boolean server) {
 		this.server = server ? server : false;
@@ -25,8 +27,8 @@ public class NoMovel implements NoMovelInterface {
 	public static void main(String[] args) {
 		if (server == true) {
 			NoMovel noMovel = new NoMovel(false);
-			noMovel.iniciarServer(noMovel);
-			noMovel.avisarNoDisponivel(coaEstrangeiro);
+			noMovel.iniciaServer(noMovel);
+			noMovel.avisarNoDisponivel(coaEstrangeiro, ipNoMovel);
 		}
 	}
 
@@ -47,7 +49,7 @@ public class NoMovel implements NoMovelInterface {
 		}
 	}
 
-	public void avisarNoDisponivel(String coa) {
+	public void avisarNoDisponivel(String coa, String ip) {
 		AgenteEstrangeiroInterface foreignAgent = null;
 
 		try {

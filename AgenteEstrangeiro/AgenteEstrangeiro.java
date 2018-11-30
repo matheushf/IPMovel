@@ -28,7 +28,7 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 		roteamento.mapearNoMovel(coa, ip);
 	}
 
-	public void main(String args[]) {
+	public static void main(String args[]) {
 		if (server == true) {
 			// rmiServer.iniciarServer(InterfaceAgenteEstrangeiro);
 

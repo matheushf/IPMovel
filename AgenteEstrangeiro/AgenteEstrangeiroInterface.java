@@ -7,8 +7,8 @@ import Mensagem.Mensagem;
 
 public interface AgenteEstrangeiroInterface extends Remote {
 
-  void reconhecimento(String ip);
+  void reconhecimento(String coa, String ip) throws RemoteException;
 
-  void encaminhaMensagem(Mensagem mensagem);
+  void encaminhaMensagem(Mensagem mensagem) throws RemoteException;
 
 }

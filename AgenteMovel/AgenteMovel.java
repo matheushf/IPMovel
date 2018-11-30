@@ -25,34 +25,40 @@ public class AgenteMovel implements AgenteMovelInterface {
     AgenteHomeInterface homeAgent = conectaHomeAgent(coa);
 
     // Verificar se o ip existe no HA
-    Boolean existe = null;    
-      try {
-          existe = homeAgent.verifica(ipDestinatario, coa);
-      } catch (RemoteException ex) {
-          Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
-      }
+    Boolean existe = null;
+    try {
+      existe = homeAgent.verifica(ipDestinatario, coa);
+    } catch (RemoteException ex) {
+      Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     if (existe) {
-      System.out.println("AgenteMovel, nó existe no HA, encaminhando mensagem ");
-        try {
-            homeAgent.encaminhaMensagem(mensagem);
-        } catch (RemoteException ex) {
-            Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      System.out.println("AgenteMovel, no existe no HA, encaminhando mensagem ");
+      try {
+        homeAgent.encaminhaMensagem(mensagem);
+      } catch (RemoteException ex) {
+        Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
+      }
     } else {
       // Caso nao exista no HA, obter o CoA do FA e conectar novamente
       String coaFA = null;
-        try {
-            coaFA = homeAgent.obtemCoA(ipDestinatario);
-        } catch (RemoteException ex) {
-            Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      try {
+        coaFA = homeAgent.obtemCoA(ipDestinatario);
+      } catch (RemoteException ex) {
+        Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
+      }
 
-      System.out.println("AgenteMovel, nó não existe no HA, ip do FA: " + coaFA);
+      System.out.println("AgenteMovel, no nao existe no HA, ip do FA: " + coaFA);
 
       // AgenteEstrangeiroInterface foreignAgent = clientEstrangeiro.conectar(coaFA);
       AgenteEstrangeiroInterface foreignAgent = conectaForeignAgent(coaFA);
-      foreignAgent.encaminhaMensagem(mensagem);
+
+      try {
+        foreignAgent.encaminhaMensagem(mensagem);
+      } catch (RemoteException ex) {
+        Logger.getLogger(AgenteMovel.class.getName()).log(Level.SEVERE, null, ex);
+      }
+
     }
   }
 
@@ -60,18 +66,18 @@ public class AgenteMovel implements AgenteMovelInterface {
     AgenteHomeInterface homeAgent = null;
 
     try {
-			Registry registry = LocateRegistry.getRegistry(coa, AgenteHomeConstant.RMI_PORT);
-			homeAgent = (AgenteHomeInterface) registry.lookup(AgenteHomeConstant.RMI_ID);
+      Registry registry = LocateRegistry.getRegistry(coa, AgenteHomeConstant.RMI_PORT);
+      homeAgent = (AgenteHomeInterface) registry.lookup(AgenteHomeConstant.RMI_ID);
 
       System.out.println("AgenteHome conectado ");
 
-		} catch (Exception e) {
-			System.err.println("Client exception: " + e.toString());
-			e.printStackTrace();
-      
-		} finally {
+    } catch (Exception e) {
+      System.err.println("Client exception: " + e.toString());
+      e.printStackTrace();
+
+    } finally {
       return homeAgent;
-    } 
+    }
   }
 
   public AgenteEstrangeiroInterface conectaForeignAgent(String coa) {
