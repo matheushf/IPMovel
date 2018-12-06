@@ -43,7 +43,7 @@ public class NoMovel implements NoMovelInterface {
 
 			registry.bind(NoMovelConstant.RMI_ID, server);
 
-			System.out.println("No Movel ready!");
+			System.out.println("No Movel ready! " + ipNoMovel);
 
 		} catch (Exception e) {
 			System.err.println("Server exception: " + e.toString());
@@ -51,6 +51,7 @@ public class NoMovel implements NoMovelInterface {
 		}
 	}
 
+	// Desativado, falta concluir implementacao
 	public void avisarNoDisponivel(MensagemControle mensagem) {
 		AgenteEstrangeiroInterface foreignAgent = null;
 
