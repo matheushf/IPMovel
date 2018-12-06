@@ -13,7 +13,7 @@ public class MensagemControle implements Serializable {
 		this.ip = ip;
 	}
 
-	private static final long serialVersionUID = 90L;
+	private static final long serialVersionUID = 95L;
 
 	public void main(String args[]) {
 	}

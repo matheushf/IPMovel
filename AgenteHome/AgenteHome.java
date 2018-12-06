@@ -23,27 +23,29 @@ public class AgenteHome implements AgenteHomeInterface {
 	public static Boolean server = true;
 
 	public AgenteHome(Boolean server) {
-		this.server = server ? server : false;
+		this.server = server;
 	}
 
 	public static void main(String args[]) {
 		if (server == true) {
-			// rmiServer.iniciarServer(AgenteHomeInterface);
+			AgenteHome agenteHome = new AgenteHome(false);
+			agenteHome.iniciaServer(agenteHome);
+		}
+	}
 
-			try {
-				AgenteHome agenteHome = new AgenteHome(false);
-				AgenteHomeInterface server = (AgenteHomeInterface) UnicastRemoteObject.exportObject(agenteHome, 0);
+	public void iniciaServer(AgenteHome agenteHome) {
+		try {
+			AgenteHomeInterface server = (AgenteHomeInterface) UnicastRemoteObject.exportObject(agenteHome, 0);
 
-				Registry registry = LocateRegistry.createRegistry(AgenteHomeConstant.RMI_PORT);
+			Registry registry = LocateRegistry.createRegistry(AgenteHomeConstant.RMI_PORT);
 
-				registry.bind(AgenteHomeConstant.RMI_ID, server);
+			registry.bind(AgenteHomeConstant.RMI_ID, server);
 
-				System.out.println("AgenteHome ready!");
+			System.out.println("AgenteHome ready!");
 
-			} catch (Exception e) {
-				System.err.println("Server exception: " + e.toString());
-				e.printStackTrace();
-			}
+		} catch (Exception e) {
+			System.err.println("Server exception: " + e.toString());
+			e.printStackTrace();
 		}
 	}
 
@@ -82,17 +84,20 @@ public class AgenteHome implements AgenteHomeInterface {
 		// Obter qual agente estrangeiro o no esta
 		String coaFA = this.obtemCoA(mensagem.ipDestinatario);
 
+		System.out.println("AgenteHome recebe mensagem, encaminhar para " + coaFA + " NoMovel: " + mensagem.ipDestinatario);
+
 		AgenteEstrangeiroInterface foreignAgent = agenteHome.conectaForeignAgent(coaFA);
 		try {
 			foreignAgent.encaminhaMensagem(mensagem);
 		} catch (Exception e) {
 			System.err.println("Server exception: " + e.toString());
 			e.printStackTrace();
-		}		
+		}
 	}
 
-	public void receberAgenteEstrangeiro(MensagemControle mensagem) {
-
+	public void receberAgenteEstrangeiro(MensagemControle mensagemControle) {
+		System.out.println("AgenteHome recebe noMovel: " + mensagemControle.ip + " e ForeignAgent: " + mensagemControle.coa);
+		roteamento.mapearNoMovel(mensagemControle.coa, mensagemControle.ip);
 	}
 
 	/*

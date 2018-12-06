@@ -28,9 +28,9 @@ public class NoMovel implements NoMovelInterface {
 	public static void main(String[] args) {
 		if (server == true) {
 			NoMovel noMovel = new NoMovel(false);
-			MensagemControle mensagem = new MensagemControle(coaEstrangeiro, ipNoMovel);
+			MensagemControle mensagemControle = new MensagemControle(coaEstrangeiro, ipNoMovel);
 			noMovel.iniciaServer(noMovel);
-			noMovel.avisarNoDisponivel(mensagem);
+			// noMovel.avisarNoDisponivel(mensagemControle);
 		}
 	}
 

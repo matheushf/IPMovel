@@ -21,41 +21,45 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 
 	public Roteamento roteamento = new Roteamento();
 	public static Boolean server = true;
-	public String coaFA = "0.0.0.0";
-	public String coaHome = "0.0.0.0";
+	public static String coaFA = "0.0.0.0";
+	public static String coaHome = "0.0.0.0";
 
 	public AgenteEstrangeiro(Boolean server) {
 		this.server = server ? server : false;
 	}
 
-	public void reconhecimento(MensagemControle mensagem) {
-		roteamento.mapearNoMovel(mensagem.coa, mensagem.ip);
-
-		AgenteEstrangeiro agenteEstrangeiro = new AgenteEstrangeiro(false);
-		agenteEstrangeiro.avisarAgenteHome(mensagem);
-	}
-
 	public static void main(String args[]) {
 		if (server == true) {
-			// rmiServer.iniciarServer(InterfaceAgenteEstrangeiro);
+			AgenteEstrangeiro agenteEstrangeiro = new AgenteEstrangeiro(false);
+			agenteEstrangeiro.iniciaServer(agenteEstrangeiro);
 
-			try {
-
-				AgenteEstrangeiro agenteEstrangeiro = new AgenteEstrangeiro(false);
-				AgenteEstrangeiroInterface server = (AgenteEstrangeiroInterface) UnicastRemoteObject
-						.exportObject(agenteEstrangeiro, 0);
-
-				Registry registry = LocateRegistry.createRegistry(AgenteEstrangeiroConstant.RMI_PORT);
-
-				registry.bind(AgenteEstrangeiroConstant.RMI_ID, server);
-
-				System.out.println("AgenteEstrangeiro ready!");
-
-			} catch (Exception e) {
-				System.err.println("Server exception: " + e.toString());
-				e.printStackTrace();
-			}
+			MensagemControle mensagemControle = new MensagemControle(coaFA, "0.0.0.0");
+			agenteEstrangeiro.avisarAgenteHome(mensagemControle);
 		}
+	}
+
+	public void iniciaServer(AgenteEstrangeiro agenteEstrangeiro) {
+		try {
+			AgenteEstrangeiroInterface server = (AgenteEstrangeiroInterface) UnicastRemoteObject
+					.exportObject(agenteEstrangeiro, 0);
+
+			Registry registry = LocateRegistry.createRegistry(AgenteEstrangeiroConstant.RMI_PORT);
+
+			registry.bind(AgenteEstrangeiroConstant.RMI_ID, server);
+
+			System.out.println("AgenteEstrangeiro ready! " + coaFA);
+
+		} catch (Exception e) {
+			System.err.println("Server exception: " + e.toString());
+			e.printStackTrace();
+		}
+	}
+
+	public void reconhecimento(MensagemControle mensagemControle) {
+		roteamento.mapearNoMovel(mensagemControle.coa, mensagemControle.ip);
+
+		AgenteEstrangeiro agenteEstrangeiro = new AgenteEstrangeiro(false);
+		agenteEstrangeiro.avisarAgenteHome(mensagemControle);
 	}
 
 	// Encaminhar mensagem para o No Movel
@@ -75,12 +79,12 @@ public class AgenteEstrangeiro implements AgenteEstrangeiroInterface {
 		}
 	}
 
-	public void avisarAgenteHome(MensagemControle mensagem) {
+	public void avisarAgenteHome(MensagemControle mensagemControle) {
 		try {
 			Registry registry = LocateRegistry.getRegistry(coaHome, AgenteHomeConstant.RMI_PORT);
 			final AgenteHomeInterface agenteHome = (AgenteHomeInterface) registry.lookup(AgenteHomeConstant.RMI_ID);
 
-			agenteHome.receberAgenteEstrangeiro(mensagem);
+			agenteHome.receberAgenteEstrangeiro(mensagemControle);
 
 			System.out.println("Avisar agente Home " + coaHome);
 

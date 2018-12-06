@@ -19,7 +19,7 @@ public class Correspondente {
   }
 
   public static void transmitirMensagem(Mensagem mensagem) {
-    System.out.println("Correspondente transmitirMensagem");
+    System.out.println("Correspondente transmitirMensagem para HA: " + mensagem.coa + " NoMovel: " + mensagem.ipDestinatario);
     // agenteMovel.enviaMensagem(mensagem);
 
     Correspondente correspondente = new Correspondente();
